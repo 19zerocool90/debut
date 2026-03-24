@@ -230,6 +230,49 @@
             background: linear-gradient(90deg, transparent, rgba(143, 107, 212, 0.45), transparent);
         }
 
+        .carousel-heading {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .carousel-heading-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.68rem;
+            letter-spacing: 0.42em;
+            text-transform: uppercase;
+            color: rgba(91, 59, 140, 0.62);
+        }
+
+        .carousel-heading-kicker::before,
+        .carousel-heading-kicker::after {
+            content: "";
+            width: 2.8rem;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 155, 210, 0.65), transparent);
+        }
+
+        .carousel-heading-title {
+            margin-top: 0.9rem;
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(2.3rem, 4vw, 3.8rem);
+            font-style: italic;
+            font-weight: 500;
+            line-height: 1;
+            color: var(--forest-900);
+            text-shadow: 0 8px 26px rgba(143, 107, 212, 0.12);
+        }
+
+        .carousel-heading-description {
+            max-width: 36rem;
+            margin: 0.9rem auto 0;
+            font-size: 0.97rem;
+            line-height: 1.8;
+            color: rgba(91, 59, 140, 0.8);
+            text-wrap: balance;
+        }
+
         .detail-backdrop {
             background:
                 linear-gradient(180deg, rgba(44, 27, 75, 0.52), rgba(44, 27, 75, 0.9)),
@@ -482,10 +525,18 @@
 
         .carousel-copy {
             position: absolute;
-            inset: 1.15rem 1.5rem auto;
+            inset: auto 1.5rem 3.2rem;
             z-index: 2;
             text-align: center;
             color: white;
+        }
+
+        .carousel-copy p:last-child {
+            max-width: 28rem;
+            line-height: 1.45;
+            margin-left: auto;
+            margin-right: auto;
+            text-wrap: balance;
         }
 
         @media (max-width: 767px) {
@@ -512,7 +563,15 @@
                 font-size: 0.95rem;
             }
             .carousel-copy {
-                inset: 1.15rem 2.8rem auto;
+                inset: auto 2.4rem 2rem;
+            }
+            .carousel-copy p:first-child {
+                font-size: 0.7rem;
+            }
+            .carousel-copy p:last-child {
+                max-width: 17.5rem;
+                font-size: 0.82rem;
+                line-height: 1.35;
             }
             .carousel-dots {
                 inset: auto 0 0.9rem;
@@ -534,6 +593,28 @@
             .carousel-dot.active {
                 background: rgba(255, 155, 210, 0.95);
                 transform: scale(1);
+            }
+            .carousel-heading {
+                margin-bottom: 1.45rem;
+            }
+            .carousel-heading-kicker {
+                gap: 0.55rem;
+                font-size: 0.58rem;
+                letter-spacing: 0.32em;
+            }
+            .carousel-heading-kicker::before,
+            .carousel-heading-kicker::after {
+                width: 1.8rem;
+            }
+            .carousel-heading-title {
+                margin-top: 0.7rem;
+                font-size: 2.25rem;
+            }
+            .carousel-heading-description {
+                margin-top: 0.7rem;
+                max-width: 19rem;
+                font-size: 0.84rem;
+                line-height: 1.6;
             }
         }
 
@@ -759,6 +840,13 @@
             </div>
 
             <div class="mt-20 mx-auto section-fade">
+                <div class="carousel-heading">
+                    <p class="carousel-heading-kicker">Moonlit Frames</p>
+                    <h3 class="carousel-heading-title">Moonlit Portrait Carousel</h3>
+                    <p class="carousel-heading-description">
+                        A dreamy collection of Rhyne's portraits, drifting from soft garden light into a more cinematic midnight glow.
+                    </p>
+                </div>
                 <div class="video-card" id="landscapeCarousel">
                     <div class="carousel-media">
                         <div class="carousel-track">
