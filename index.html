@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhyne's 18th Birthday | An Enchanted Night</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest-950: #2c1b4b;
+            --forest-900: #5b3b8c;
+            --forest-700: #8f6bd4;
+            --forest-500: #b69dff;
+            --mist: #f7f0ff;
+            --cream: #fcf8ff;
+            --gold: #ff9bd2;
+            --gold-soft: rgba(255, 155, 210, 0.2);
+            --panel: rgba(255, 248, 255, 0.88);
+            --shadow: 0 22px 60px rgba(44, 27, 75, 0.16);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: "Montserrat", sans-serif;
+            color: var(--forest-950);
+            background:
+                radial-gradient(circle at top, rgba(182, 157, 255, 0.22), transparent 32%),
+                radial-gradient(circle at right top, rgba(255, 155, 210, 0.14), transparent 24%),
+                linear-gradient(180deg, #fffbff 0%, #f5edff 48%, var(--cream) 100%);
+            overflow-x: hidden;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .font-display { font-family: "Cormorant Garamond", serif; }
+        .font-script { font-family: "Great Vibes", cursive; }
+        .gold-text { color: var(--gold); }
+        .gold-border { border: 1px solid var(--gold-soft); }
+
+        .glass {
+            background: var(--panel);
+            border: 1px solid rgba(255, 155, 210, 0.18);
+            backdrop-filter: blur(18px);
+            box-shadow: var(--shadow);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 155, 210, 0.2), transparent 20%),
+                radial-gradient(circle at 80% 25%, rgba(184, 206, 255, 0.18), transparent 18%),
+                linear-gradient(180deg, rgba(44, 27, 75, 0.2), rgba(44, 27, 75, 0.72));
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0;
+            height: 14rem;
+            background: linear-gradient(180deg, transparent, rgba(44, 27, 75, 0.8));
+            z-index: 1;
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(255, 155, 210, 0.58), rgba(255, 155, 210, 0));
+            filter: blur(1px);
+            pointer-events: none;
+            opacity: 0.55;
+            animation: drift 8s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .section-fade {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 900ms ease, transform 900ms ease;
+        }
+
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .story-card,
+        .entourage-card,
+        .detail-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-card::before,
+        .entourage-card::before,
+        .detail-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(255, 155, 210, 0.08), transparent 50%);
+            pointer-events: none;
+        }
+
+        .story-card::after,
+        .entourage-card::after {
+            content: "";
+            position: absolute;
+            inset: -30% auto auto -20%;
+            width: 40%;
+            height: 180%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+            transform: rotate(18deg) translateX(-140%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .story-card,
+        .entourage-card {
+            transition: transform 350ms ease, box-shadow 350ms ease, border-color 350ms ease;
+        }
+
+        .story-card:hover,
+        .entourage-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 60px rgba(44, 27, 75, 0.12);
+            border-color: rgba(255, 155, 210, 0.28);
+        }
+
+        .story-card:hover::after,
+        .entourage-card:hover::after {
+            opacity: 1;
+            animation: moonSweep 1.25s ease forwards;
+        }
+
+        .entourage-card:hover::before,
+        .story-card:hover::before {
+            animation: enchantedPulse 2.4s ease-in-out infinite;
+        }
+
+        .numbered-list,
+        .numbered-grid {
+            list-style: none;
+            counter-reset: enchanted-item;
+            padding-left: 0;
+        }
+
+        .numbered-list li,
+        .numbered-grid li {
+            counter-increment: enchanted-item;
+            position: relative;
+            padding-left: 1.8rem;
+        }
+
+        .numbered-list li::before,
+        .numbered-grid li::before {
+            content: counter(enchanted-item);
+            position: absolute;
+            left: 0;
+            top: 0.02rem;
+            min-width: 1.3rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .gallery-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .gallery-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            background: #efe8ff;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-card .caption {
+            position: absolute;
+            inset: auto 0 0;
+            padding: 1.25rem;
+            color: white;
+            background: linear-gradient(180deg, transparent, rgba(44, 27, 75, 0.84));
+        }
+
+        .hero-title {
+            text-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+        }
+
+        .leaf-divider {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.85rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            color: rgba(91, 59, 140, 0.64);
+        }
+
+        .leaf-divider::before,
+        .leaf-divider::after {
+            content: "";
+            width: 3rem;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(143, 107, 212, 0.45), transparent);
+        }
+
+        .detail-backdrop {
+            background:
+                linear-gradient(180deg, rgba(44, 27, 75, 0.52), rgba(44, 27, 75, 0.9)),
+                url("photos/_JFC5909.JPEG") center/cover no-repeat;
+        }
+
+        .rsvp-shell {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .rsvp-shell::before,
+        .rsvp-shell::after {
+            content: "";
+            position: absolute;
+            border-radius: 999px;
+            filter: blur(70px);
+            z-index: -1;
+        }
+
+        .rsvp-shell::before {
+            width: 18rem;
+            height: 18rem;
+            top: -4rem;
+            right: -7rem;
+            background: rgba(182, 157, 255, 0.24);
+        }
+
+        .rsvp-shell::after {
+            width: 16rem;
+            height: 16rem;
+            bottom: -4rem;
+            left: -6rem;
+            background: rgba(255, 155, 210, 0.18);
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            border: 1px solid rgba(143, 107, 212, 0.16);
+            background: rgba(255, 255, 255, 0.72);
+            color: var(--forest-950);
+            border-radius: 1rem;
+            padding: 1rem 1.1rem;
+            transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: rgba(255, 155, 210, 0.92);
+            box-shadow: 0 0 0 4px rgba(255, 155, 210, 0.14);
+            transform: translateY(-1px);
+        }
+
+        .form-status {
+            border-radius: 1rem;
+            padding: 0.95rem 1rem;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .form-status.error {
+            background: rgba(137, 55, 157, 0.08);
+            color: #7c2d92;
+            border: 1px solid rgba(137, 55, 157, 0.14);
+        }
+
+        .form-status.info {
+            background: rgba(91, 59, 140, 0.08);
+            color: var(--forest-900);
+            border: 1px solid rgba(91, 59, 140, 0.12);
+        }
+
+        .choice {
+            border: 1px solid rgba(143, 107, 212, 0.16);
+            border-radius: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.68);
+            transition: border-color 200ms ease, background 200ms ease, transform 200ms ease;
+        }
+
+        .choice:hover {
+            border-color: rgba(255, 155, 210, 0.7);
+            background: rgba(255, 247, 255, 0.96);
+            transform: translateY(-2px);
+        }
+
+        .primary-button {
+            border: none;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #7f5fe3, #f49bc7);
+            color: white;
+            font-weight: 600;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            padding: 1rem 1.25rem;
+            transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+            box-shadow: 0 18px 32px rgba(91, 59, 140, 0.28);
+        }
+
+        .primary-button:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.04);
+        }
+
+        .secondary-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.48);
+            padding: 0.95rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            transition: background 200ms ease, transform 200ms ease, border-color 200ms ease;
+        }
+
+        .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.82);
+        }
+
+        .mini-tag {
+            display: inline-block;
+            padding: 0.38rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(255, 155, 210, 0.14);
+            color: var(--forest-900);
+            font-size: 0.74rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .video-card {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            width: 100%;
+            height: clamp(24rem, 62vw, 40rem);
+            box-shadow: var(--shadow);
+            margin: 0 auto;
+        }
+
+        .video-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(44, 27, 75, 0.12), rgba(44, 27, 75, 0.74));
+            z-index: 1;
+        }
+
+        .video-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 500ms ease;
+            z-index: 0;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        .carousel-ui {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem;
+            pointer-events: none;
+        }
+
+        .carousel-button {
+            width: 3rem;
+            height: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            color: white;
+            backdrop-filter: blur(10px);
+            pointer-events: auto;
+            transition: transform 200ms ease, background 200ms ease, border-color 200ms ease;
+        }
+
+        .carousel-button:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.22);
+            border-color: rgba(255, 255, 255, 0.75);
+        }
+
+        .carousel-dots {
+            position: absolute;
+            inset: auto 0 1.5rem;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            gap: 0.55rem;
+        }
+
+        .carousel-dot {
+            width: 0.7rem;
+            height: 0.7rem;
+            border: none;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.35);
+            transition: transform 200ms ease, background 200ms ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--gold);
+            transform: scale(1.12);
+        }
+
+        .carousel-copy {
+            position: absolute;
+            inset: auto 0 3.75rem;
+            z-index: 2;
+            padding: 0 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        @media (max-width: 767px) {
+            .video-card {
+                width: min(100%, 100%);
+                height: clamp(18rem, 72vw, 28rem);
+            }
+        }
+
+        .play-badge {
+            width: 5.5rem;
+            height: 5.5rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            display: grid;
+            place-items: center;
+            margin: 0 auto;
+            transition: transform 200ms ease, background 200ms ease;
+        }
+
+        .video-card:hover .play-badge {
+            transform: scale(1.06);
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        .footer-rule {
+            width: 6rem;
+            height: 1px;
+            margin: 0 auto 1.25rem;
+            background: linear-gradient(90deg, transparent, rgba(255, 155, 210, 0.8), transparent);
+        }
+
+        .music-toggle {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 1.25rem;
+            z-index: 40;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            border: 1px solid rgba(255, 155, 210, 0.24);
+            border-radius: 999px;
+            padding: 0.85rem 1rem;
+            background: rgba(44, 27, 75, 0.82);
+            color: white;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 18px 38px rgba(44, 27, 75, 0.18);
+            transition: transform 200ms ease, background 200ms ease, border-color 200ms ease;
+        }
+
+        .music-toggle:hover {
+            transform: translateY(-2px);
+            background: rgba(44, 27, 75, 0.92);
+            border-color: rgba(255, 155, 210, 0.5);
+        }
+
+        .music-toggle-dot {
+            width: 0.7rem;
+            height: 0.7rem;
+            border-radius: 999px;
+            background: var(--gold);
+            box-shadow: 0 0 14px rgba(255, 155, 210, 0.7);
+            flex: 0 0 auto;
+        }
+
+        .music-toggle.is-muted .music-toggle-dot {
+            background: rgba(255, 255, 255, 0.28);
+            box-shadow: none;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(0, -18px, 0) scale(1.08); }
+        }
+
+        @keyframes moonSweep {
+            0% { transform: rotate(18deg) translateX(-140%); }
+            100% { transform: rotate(18deg) translateX(420%); }
+        }
+
+        @keyframes enchantedPulse {
+            0%, 100% { opacity: 0.6; filter: brightness(1); }
+            50% { opacity: 1; filter: brightness(1.15); }
+        }
+
+        @media (max-width: 767px) {
+            .hero { min-height: 100svh; }
+            .hero-title { font-size: clamp(3.5rem, 18vw, 5.2rem); }
+            .detail-backdrop { background-attachment: scroll; }
+            .music-toggle {
+                display: inline-flex;
+                top: calc(max(0.75rem, env(safe-area-inset-top)) + 0.1rem);
+                right: calc(max(0.75rem, env(safe-area-inset-right)) + 0.1rem);
+                bottom: auto;
+                width: auto;
+                height: auto;
+                min-height: 2.9rem;
+                padding: 0.7rem 0.95rem;
+                justify-content: center;
+                gap: 0.55rem;
+                z-index: 100;
+                font-size: 0.88rem;
+            }
+            .music-toggle span:last-child {
+                display: inline;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+        <img src="photos/_JFC6442.JPEG" alt="Rhyne portrait" class="absolute inset-0 h-full w-full object-cover">
+
+        <div class="floating-orb h-4 w-4 top-[18%] left-[14%]" style="animation-delay: 0s;"></div>
+        <div class="floating-orb h-6 w-6 top-[30%] right-[16%]" style="animation-delay: 1.4s;"></div>
+        <div class="floating-orb h-5 w-5 bottom-[22%] left-[22%]" style="animation-delay: 2.8s;"></div>
+        <div class="floating-orb h-3 w-3 bottom-[30%] right-[26%]" style="animation-delay: 4.2s;"></div>
+
+        <div class="relative z-10 max-w-5xl text-center text-white">
+            <p class="font-script text-5xl md:text-7xl gold-text mb-3">An Enchanted Night</p>
+            <h1 class="hero-title font-display text-[4.75rem] md:text-[8.5rem] leading-none uppercase tracking-[0.18em] font-light">Rhyne</h1>
+            <p class="mt-6 text-sm md:text-base uppercase tracking-[0.55em] text-fuchsia-50">April 2, 2026</p>
+            <p class="mt-4 max-w-2xl mx-auto text-sm md:text-lg leading-relaxed text-fuchsia-50/88">
+                A debut celebration wrapped in violet light, pastel details, and the people who shaped her story.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#rsvp" class="secondary-button">RSVP Now</a>
+                <a href="#gallery" class="secondary-button">View Pictorial</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="invite" class="px-6 py-20 md:py-28 bg-[var(--mist)]">
+        <div class="max-w-4xl mx-auto text-center section-fade">
+            <span class="leaf-divider">Debut Invitation</span>
+            <h2 class="font-display text-4xl md:text-6xl text-[var(--forest-900)] mt-8 italic">
+                You are warmly invited to celebrate my debut
+            </h2>
+            <p class="max-w-3xl mx-auto mt-8 text-base md:text-lg leading-8 text-zinc-700">
+                With great joy, we invite you to celebrate the 18th Birthday of RHYNE CARLA, a night of grace, laughter,
+                and unforgettable memories.
+            </p>
+            <p class="max-w-3xl mx-auto mt-6 text-base md:text-lg leading-8 text-[var(--forest-700)] italic">
+                Let us come together to honor this significant milestone in her life, surrounded by family and friends who
+                have supported her every step of the way. We look forward to sharing this joyous occasion with you and
+                celebrating the journey that lies ahead.
+            </p>
+        </div>
+    </section>
+
+    <section id="gallery" class="px-6 py-20 md:py-28 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center section-fade">
+                <span class="mini-tag">The Pictorial</span>
+                <h2 class="font-script text-5xl md:text-6xl gold-text mt-5">Three Enchanted Scenes</h2>
+                <p class="uppercase tracking-[0.35em] text-xs md:text-sm mt-3 text-[var(--forest-900)]">
+                    A visual journey through Rhyne's debut portraits
+                </p>
+            </div>
+
+            <div class="mt-16 section-fade">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="h-px flex-1 bg-[rgba(143,107,212,0.18)]"></div>
+                    <h3 class="font-display text-3xl md:text-4xl italic text-[var(--forest-900)]">Scene I: Whispering Woods</h3>
+                    <div class="h-px flex-1 bg-[rgba(143,107,212,0.18)]"></div>
+                </div>
+                <div class="gallery-grid md:grid-cols-4 auto-rows-[220px]">
+                    <div class="gallery-card md:col-span-2 md:row-span-2">
+                        <img src="photos/Scene%201%20-%201.JPEG" alt="Rhyne in the woods">
+                        <div class="caption">
+                            <p class="font-display text-2xl italic">The Awakening</p>
+                        </div>
+                    </div>
+                    <div class="gallery-card">
+                        <img src="photos/Scene%201%20-%202.JPEG" alt="Rhyne portrait scene one">
+                    </div>
+                    <div class="gallery-card">
+                        <img src="photos/Scene%201%20-%203.JPEG" alt="Rhyne portrait scene one alternate">
+                    </div>
+                    <div class="gallery-card md:col-span-2">
+                        <img src="photos/Scene%201%20-4.JPEG" alt="Rhyne portrait closeup">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 section-fade">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="h-px flex-1 bg-[rgba(143,107,212,0.18)]"></div>
+                    <h3 class="font-display text-3xl md:text-4xl italic text-[var(--forest-900)]">Scene II: Enchanted Huntress</h3>
+                    <div class="h-px flex-1 bg-[rgba(143,107,212,0.18)]"></div>
+                </div>
+                <div class="gallery-grid md:grid-cols-3 auto-rows-[320px]">
+                    <div class="gallery-card">
+                        <img src="photos/Scene%202%20-%201.JPEG" alt="Rhyne scene two portrait one">
+                    </div>
+                    <div class="gallery-card">
+                        <img src="photos/Scene%202%20-%203.JPEG" alt="Rhyne scene two portrait two">
+                    </div>
+                    <div class="gallery-card">
+                        <img src="photos/Scene%202%20-2.JPEG" alt="Rhyne scene two portrait three">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 section-fade">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="h-px flex-1 bg-[rgba(143,107,212,0.18)]"></div>
+                    <h3 class="font-display text-3xl md:text-4xl italic text-[var(--forest-900)]">Scene III: Moonlit Reverie</h3>
+                    <div class="h-px flex-1 bg-[rgba(143,107,212,0.18)]"></div>
+                </div>
+                <div class="gallery-grid md:grid-cols-4 auto-rows-[454px] items-stretch">
+                    <div class="gallery-card">
+                        <img src="photos/Scene%203%20-%201.JPEG" alt="Rhyne scene three portrait one" style="height: 100%;">
+                    </div>
+                    <div class="gallery-card md:col-span-2" style="background:#2c1b4b;">
+                        <img src="photos/Scene%203%20-%202.JPEG" alt="Rhyne scene three portrait two" style="height: 100%; object-fit: cover; background:#2c1b4b;">
+                    </div>
+                    <div class="gallery-card">
+                        <img src="photos/Scene%203%20-%203.JPEG" alt="Rhyne scene three portrait three" style="height: 100%;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 mx-auto section-fade">
+                <div class="video-card" id="landscapeCarousel">
+                    <div class="carousel-track">
+                        <figure class="carousel-slide active"><img src="photos/_JFC5432.JPEG" alt="Rhyne landscape carousel image 1"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC5442.JPEG" alt="Rhyne landscape carousel image 2"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC5527.JPEG" alt="Rhyne landscape carousel image 3"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC5636.JPEG" alt="Rhyne landscape carousel image 4"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC5699.JPEG" alt="Rhyne landscape carousel image 5"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC5781.JPEG" alt="Rhyne landscape carousel image 6"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC5830.JPEG" alt="Rhyne landscape carousel image 7"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC5863.JPEG" alt="Rhyne landscape carousel image 8"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC5869.JPEG" alt="Rhyne landscape carousel image 9"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC5874.JPEG" alt="Rhyne landscape carousel image 10"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC5883.JPEG" alt="Rhyne landscape carousel image 11"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC5909.JPEG" alt="Rhyne landscape carousel image 12"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC5915.JPEG" alt="Rhyne landscape carousel image 13"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC6113.JPEG" alt="Rhyne landscape carousel image 14"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC6185.JPEG" alt="Rhyne landscape carousel image 15"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC6240.JPEG" alt="Rhyne landscape carousel image 16"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC6280.JPEG" alt="Rhyne landscape carousel image 17"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC6333.JPEG" alt="Rhyne landscape carousel image 18"></figure>
+                        <figure class="carousel-slide"><img src="photos/_JFC6435.JPEG" alt="Rhyne landscape carousel image 19"></figure>
+                        <figure class="carousel-slide"><img src="photos/Scene%201%20-%201.JPEG" alt="Rhyne landscape carousel image 20"></figure>
+                        <figure class="carousel-slide"><img src="photos/Scene%201%20-%202.JPEG" alt="Rhyne landscape carousel image 21"></figure>
+                        <figure class="carousel-slide"><img src="photos/Scene%201%20-%203.JPEG" alt="Rhyne landscape carousel image 22"></figure>
+                        <figure class="carousel-slide"><img src="photos/Scene%201%20-4.JPEG" alt="Rhyne landscape carousel image 23"></figure>
+                        <figure class="carousel-slide"><img src="photos/Scene%202%20-%201.JPEG" alt="Rhyne landscape carousel image 24"></figure>
+                        <figure class="carousel-slide"><img src="photos/Scene%202%20-%203.JPEG" alt="Rhyne landscape carousel image 25"></figure>
+                        <figure class="carousel-slide"><img src="photos/Scene%202%20-2.JPEG" alt="Rhyne landscape carousel image 26"></figure>
+                        <figure class="carousel-slide"><img src="photos/Scene%203%20-%201.JPEG" alt="Rhyne landscape carousel image 27"></figure>
+                        <figure class="carousel-slide"><img src="photos/Scene%203%20-%202.JPEG" alt="Rhyne landscape carousel image 28"></figure>
+                        <figure class="carousel-slide"><img src="photos/Scene%203%20-%203.JPEG" alt="Rhyne landscape carousel image 29"></figure>
+                    </div>
+
+                    <div class="carousel-ui">
+                        <button type="button" class="carousel-button" id="carouselPrev" aria-label="Previous image">&#10094;</button>
+                        <button type="button" class="carousel-button" id="carouselNext" aria-label="Next image">&#10095;</button>
+                    </div>
+
+                    <div class="carousel-copy">
+                        <p class="uppercase tracking-[0.34em] text-xs text-fuchsia-50">Enchanted Photo Reel</p>
+                        <p class="mt-3 max-w-2xl mx-auto text-sm md:text-base text-white/82">
+                            A carousel of Rhyne's landscape portraits, moving through each chapter of the pictorial.
+                        </p>
+                    </div>
+
+                    <div class="carousel-dots" id="carouselDots"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="entourage" class="px-6 py-20 md:py-28 bg-[var(--cream)]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center section-fade">
+                <span class="mini-tag">The Entourage</span>
+                <h2 class="font-script text-5xl md:text-6xl gold-text mt-5">Special Participants</h2>
+                <p class="uppercase tracking-[0.35em] text-xs md:text-sm mt-3 text-[var(--forest-900)]">
+                    People who complete Rhyne's celebration
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-16">
+                <article class="entourage-card section-fade rounded-[1.5rem] border border-[rgba(143,107,212,0.12)] bg-white p-6 shadow-[0_16px_40px_rgba(44,27,75,0.08)]">
+                    <h3 class="font-display text-3xl text-[var(--forest-900)]">18 Roses</h3>
+                    <div class="mt-3 mb-5 h-px bg-[linear-gradient(90deg,var(--gold),transparent)]"></div>
+                    <ul class="numbered-list space-y-1.5 text-sm text-zinc-700 leading-6">
+                        <li>Janer Ocol</li>
+                        <li>Thirdy Andale</li>
+                        <li>Gleener Poe rar</li>
+                        <li>France Gabriel Lim</li>
+                        <li>Rj Vinluan</li>
+                        <li>Keneth Bejo</li>
+                        <li>Liborio Sustuisa III</li>
+                        <li>Jerome Sustiosa</li>
+                        <li>Paulo Viloria Jr.</li>
+                        <li>Piolo Viloria</li>
+                        <li>Rafael Hacosta</li>
+                        <li>Andrei Deocades</li>
+                        <li>Jastine Parenas</li>
+                        <li>Ardy Lucero</li>
+                        <li>John Lorenz dela Cruz</li>
+                        <li>Felipe Arar Sr.</li>
+                        <li>Rein Carlo Canto</li>
+                        <li>Carlos Canto Jr.</li>
+                    </ul>
+                </article>
+
+                <article class="entourage-card section-fade rounded-[1.5rem] border border-[rgba(143,107,212,0.12)] bg-white p-6 shadow-[0_16px_40px_rgba(44,27,75,0.08)]">
+                    <h3 class="font-display text-3xl text-[var(--forest-900)]">18 Candles</h3>
+                    <div class="mt-3 mb-5 h-px bg-[linear-gradient(90deg,var(--gold),transparent)]"></div>
+                    <ul class="numbered-list space-y-1.5 text-sm text-zinc-700 leading-6">
+                        <li>Shaira Arar</li>
+                        <li>Jaybel Perez</li>
+                        <li>April Rose Ceraos</li>
+                        <li>Jowena Canto</li>
+                        <li>Crishyna Sustiosa</li>
+                        <li>Joy Navaja</li>
+                        <li>Sheila Marie Miniano</li>
+                        <li>Shaira Amazen</li>
+                        <li>Elizabeth Viloria</li>
+                        <li>Consuelo Viloria</li>
+                        <li>Zaira Munoz</li>
+                        <li>Jelly Mae Baun</li>
+                        <li>Jansken Yog</li>
+                        <li>Criselle Villorente</li>
+                        <li>Myrah Fregillana</li>
+                        <li>Amalia Arar</li>
+                        <li>Jelian Ecobe</li>
+                        <li>Suraina Viloria</li>
+                    </ul>
+                </article>
+
+                <article class="entourage-card section-fade rounded-[1.5rem] border border-[rgba(143,107,212,0.12)] bg-white p-6 shadow-[0_16px_40px_rgba(44,27,75,0.08)]">
+                    <h3 class="font-display text-3xl text-[var(--forest-900)]">18 Gifts</h3>
+                    <div class="mt-3 mb-5 h-px bg-[linear-gradient(90deg,var(--gold),transparent)]"></div>
+                    <ul class="numbered-list space-y-1.5 text-sm text-zinc-700 leading-6">
+                        <li>Hon. Ma. Katrina F. Sandigan, Mayor</li>
+                        <li>Hon. Edgar Sandigan</li>
+                        <li>Hon. Meris Ian Aradanas, Vice Mayor</li>
+                        <li>Police Major Aljun Besario</li>
+                        <li>Col. Dranreb F. Canto</li>
+                        <li>MSgt. Edward C. Lasmarias</li>
+                        <li>Aristoteles Costales Jr.</li>
+                        <li>Atty. Kenjhon Silvestre</li>
+                        <li>Hon. Mark John Cabacungan</li>
+                        <li>Hon. Wennie Vallejos</li>
+                        <li>Hon. Jong Belmonte</li>
+                        <li>Florante Tongo Jr.</li>
+                        <li>Hon. Rosemarie C. Andale</li>
+                        <li>Hon. Jairo Marohombsar</li>
+                        <li>Jogith Daunutan</li>
+                        <li>Jojen Durana</li>
+                        <li>Wayne Janzen Bautista</li>
+                        <li>Daylinda Villegas</li>
+                    </ul>
+                </article>
+
+            </div>
+
+            <div class="mt-8 flex justify-center">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full max-w-[1360px]">
+                <article class="entourage-card section-fade rounded-[1.5rem] border border-[rgba(143,107,212,0.12)] bg-white p-6 shadow-[0_16px_40px_rgba(44,27,75,0.08)]">
+                    <h3 class="font-display text-3xl text-[var(--forest-900)]">18 Shots</h3>
+                    <div class="mt-3 mb-5 h-px bg-[linear-gradient(90deg,var(--gold),transparent)]"></div>
+                    <ul class="numbered-list space-y-1.5 text-sm text-zinc-700 leading-6">
+                        <li>Ask Morales</li>
+                        <li>Henzon Draper</li>
+                        <li>Jairus Fabros</li>
+                        <li>James Kamsa</li>
+                        <li>Jayvee Baguilan</li>
+                        <li>Mc Raven Miculob</li>
+                        <li>Raff Kanda</li>
+                        <li>Romeo Eliseo</li>
+                        <li>Roxane Buenacosa</li>
+                        <li>Steven dela Cruz</li>
+                        <li>Sham Dimakuta</li>
+                        <li>Wendie Cipriano</li>
+                        <li>Franz Carl Diaz</li>
+                        <li>Maricris Camarao</li>
+                        <li>Alyssa Cordero</li>
+                        <li>Amir Dimakuta</li>
+                        <li>Teya Lucero</li>
+                        <li>Christian Canto</li>
+                    </ul>
+                </article>
+
+                <article class="entourage-card section-fade rounded-[1.5rem] border border-[rgba(143,107,212,0.12)] bg-white p-6 shadow-[0_16px_40px_rgba(44,27,75,0.08)]">
+                    <h3 class="font-display text-3xl text-[var(--forest-900)]">18 Treasures</h3>
+                    <div class="mt-3 mb-5 h-px bg-[linear-gradient(90deg,var(--gold),transparent)]"></div>
+                    <ul class="numbered-list space-y-1.5 text-sm text-zinc-700 leading-6">
+                        <li>Arlene Parenas</li>
+                        <li>Robert Navaja</li>
+                        <li>Asmaira Laguialam</li>
+                        <li>Precy Joy Tacadao</li>
+                        <li>Paulo Voloria Sr.</li>
+                        <li>Alfredo Viloria</li>
+                        <li>Reyjohn Viloria</li>
+                        <li>Junior Jay Nuto</li>
+                        <li>Judy Mae Canaveral</li>
+                        <li>Janet Sandigan</li>
+                        <li>Myra Fregillana</li>
+                        <li>Carlo Abdul</li>
+                        <li>Irene Gayagoy</li>
+                        <li>Ma. Klier Ramos</li>
+                        <li>Romulo Andale Jr.</li>
+                        <li>Lowelyn Paculanan</li>
+                        <li>Ella Villegas</li>
+                        <li>Reynal Imperial</li>
+                    </ul>
+                </article>
+
+                <article class="entourage-card section-fade rounded-[1.5rem] border border-[rgba(143,107,212,0.12)] bg-white p-6 shadow-[0_16px_40px_rgba(44,27,75,0.08)]">
+                    <h3 class="font-display text-3xl text-[var(--forest-900)]">18 Blue Bills</h3>
+                    <div class="mt-3 mb-5 h-px bg-[linear-gradient(90deg,var(--gold),transparent)]"></div>
+                    <ul class="numbered-list space-y-1.5 text-sm text-zinc-700 leading-6">
+                        <li>Hon. Ramelyn E. Viloria</li>
+                        <li>Hon. Bernaned Barua</li>
+                        <li>Hon. Rex Quibuyen</li>
+                        <li>Hon. Guillermo Reyes</li>
+                        <li>Hon. Cesar Imperial Imperial</li>
+                        <li>Hon. Wilbert Sablay</li>
+                        <li>Hon. Mylene Marohomsalic</li>
+                        <li>Hon. Renante Magaway</li>
+                        <li>Mylen Ayson</li>
+                        <li>Marilou Perez</li>
+                        <li>Rubyliza Padua</li>
+                        <li>Hyacinth Marohomsalic</li>
+                        <li>Muhibpi Ibraim</li>
+                        <li>Jaybel Perez</li>
+                        <li>Bogs Duran</li>
+                        <li>Joey Francis Canto</li>
+                        <li>Juliet Vinluan</li>
+                        <li>Bernardo Canto Jr.</li>
+                    </ul>
+                </article>
+
+                <article class="entourage-card section-fade rounded-[1.5rem] border border-[rgba(143,107,212,0.12)] bg-white p-6 shadow-[0_16px_40px_rgba(44,27,75,0.08)]">
+                    <h3 class="font-display text-3xl text-[var(--forest-900)]">Yellow Bills</h3>
+                    <div class="mt-3 mb-5 h-px bg-[linear-gradient(90deg,var(--gold),transparent)]"></div>
+                    <ul class="numbered-list space-y-1.5 text-sm text-zinc-700 leading-6">
+                        <li>Hon. Noel Costales</li>
+                        <li>Hon. Rodulfo Serenio</li>
+                        <li>Hon. Cristopher Habel</li>
+                        <li>Jezron Carino</li>
+                        <li>Marlyn Lucero</li>
+                        <li>Norhaima Laguialam</li>
+                        <li>Mariecel Jagorin</li>
+                        <li>Jonah Bolencis</li>
+                        <li>Meriam Juanico</li>
+                        <li>Mushrifah Abdulfatah</li>
+                        <li>Amor Divina Cabantug</li>
+                        <li>Emily Pama</li>
+                        <li>Rica Panes</li>
+                        <li>Irene Grace Navaro</li>
+                        <li>Norhana Tocao</li>
+                        <li>Romulo Andale Jr.</li>
+                        <li>John Lorenz dela Cruz</li>
+                        <li>Cesar Carl Canto</li>
+                    </ul>
+                </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="detail-backdrop relative px-6 py-20 md:py-28 text-white">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 md:gap-12 relative z-10">
+            <div class="detail-card section-fade rounded-[1.75rem] border border-white/10 bg-white/5 p-8 md:p-10 backdrop-blur-sm flex flex-col justify-center">
+                <span class="mini-tag bg-white/10 text-white self-start">When &amp; Where</span>
+                <h2 class="font-display text-4xl md:text-6xl mt-5 gold-text">Save The Evening</h2>
+
+                <div class="mt-10 space-y-8">
+                    <div class="flex items-start gap-4">
+                        <div class="mt-1 text-[var(--gold)]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.35em] text-white/60">Date &amp; Time</p>
+                            <p class="mt-2 text-2xl font-semibold">April 2, 2026</p>
+                            <p class="mt-1 text-white/78">6:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="mt-1 text-[var(--gold)]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.35em] text-white/60">Venue</p>
+                            <p class="mt-2 text-2xl font-semibold">LA CARIDAD PALM RESORT</p>
+                            <p class="mt-1 text-white/78">We look forward to sharing this magical night with you.</p>
+                            <a href="https://www.google.com/maps/search/LA+CARIDAD+PALM+RESORT" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex rounded-full bg-[var(--gold)] px-6 py-3 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--forest-950)] no-underline transition hover:brightness-110">
+                                Open In GPS
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="detail-card section-fade glass rounded-[1.75rem] p-8 md:p-10 text-[var(--forest-950)] self-start">
+                <span class="mini-tag">Dress Code</span>
+                <h3 class="font-display text-3xl md:text-4xl mt-5">Strictly Formal</h3>
+                <p class="mt-3 text-sm uppercase tracking-[0.3em] text-[var(--forest-700)]">Formal Attire</p>
+
+                <div class="flex items-center gap-4 mt-8">
+                    <span class="h-12 w-12 rounded-full border-2 border-white shadow-md" style="background:#c9b6ff;"></span>
+                    <span class="h-12 w-12 rounded-full border-2 border-white shadow-md" style="background:#bfe0ff;"></span>
+                    <span class="h-12 w-12 rounded-full border-2 border-white shadow-md" style="background:#ffc7e6;"></span>
+                </div>
+
+                <div class="mt-8 space-y-4 border-t border-[rgba(143,107,212,0.16)] pt-6 text-sm leading-7 text-zinc-700">
+                    <p>Gifts are welcome with love, but monetary gifts would be more practical and deeply appreciated.</p>
+                    <p>As much as we adore your little ones, we have chosen to make this a celebration exclusively for adults. We hope you can enjoy a relaxing evening filled with great company, laughter, and memories, a night to remember.</p>
+                    <p>Should it be unavoidable to bring your little ones, we kindly ask that they be properly supervised so as not to disrupt the important parts of the event, including photography and special presentations.</p>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <section id="rsvp" class="rsvp-shell px-6 py-20 md:py-28 bg-white">
+        <div class="max-w-2xl mx-auto glass rounded-[2rem] p-8 md:p-12 section-fade">
+            <div class="text-center">
+                <span class="mini-tag">RSVP</span>
+                <h2 class="font-display text-4xl md:text-5xl text-[var(--forest-900)] mt-5">Reserve Your Place</h2>
+                <p class="mt-3 text-[var(--forest-700)] italic">Kindly RSVP by March 26, 2026</p>
+            </div>
+
+            <form id="rsvpForm" class="mt-10 space-y-5" method="POST" novalidate>
+                <input type="hidden" name="_subject" value="New RSVP for Rhyne's 18th Birthday">
+                <input type="hidden" name="eventTitle" value="Rhyne's 18th Birthday | An Enchanted Night">
+                <input type="hidden" name="submittedAt" id="submittedAt">
+                <input type="hidden" name="pageUrl" id="pageUrl">
+                <div>
+                    <label for="guestName" class="block mb-2 text-xs uppercase tracking-[0.3em] text-[var(--forest-900)]">Your Full Name</label>
+                    <input id="guestName" name="guestName" type="text" required class="form-input" placeholder="Enter your name">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <label class="choice flex items-center gap-3 cursor-pointer">
+                        <input type="radio" name="attendance" value="Attending" class="accent-[var(--forest-900)]" required>
+                        <span class="text-sm uppercase tracking-[0.22em] text-[var(--forest-900)]">Attending</span>
+                    </label>
+                    <label class="choice flex items-center gap-3 cursor-pointer">
+                        <input type="radio" name="attendance" value="Declined" class="accent-[var(--forest-900)]" required>
+                        <span class="text-sm uppercase tracking-[0.22em] text-[var(--forest-900)]">Declined</span>
+                    </label>
+                </div>
+
+                <div>
+                    <label for="guestMessage" class="block mb-2 text-xs uppercase tracking-[0.3em] text-[var(--forest-900)]">Wishes For Rhyne</label>
+                    <textarea id="guestMessage" name="guestMessage" rows="4" required class="form-textarea" placeholder="A short message for the debutante..."></textarea>
+                </div>
+
+                <div id="formStatus" class="form-status info hidden"></div>
+
+                <p class="text-sm leading-7 text-center text-zinc-600">
+                    Kindly RSVP by March 26, 2026 to help us prepare a seamless and enchanting evening. Seating is reserved
+                    exclusively for confirmed guests, and we may not be able to accommodate those who do not RSVP.
+                </p>
+
+                <button id="rsvpSubmitButton" type="submit" class="primary-button w-full">Send Response</button>
+            </form>
+
+            <div id="successMsg" class="hidden mt-10 rounded-[1.5rem] bg-[rgba(64,145,108,0.08)] p-8 text-center">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[rgba(201,162,39,0.12)] text-[var(--gold)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <p class="font-display text-4xl text-[var(--forest-900)] mt-5">Response Sent</p>
+                <p id="successText" class="mt-3 text-zinc-700 leading-7">
+                    Thank you for responding. We look forward to seeing you at Rhyne's enchanted celebration.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="px-6 py-16 bg-[var(--forest-950)] text-center text-white/76">
+        <div class="footer-rule"></div>
+        <p class="font-script text-4xl gold-text">Rhyne's 18th Debut</p>
+        <p class="mt-5 text-[10px] uppercase tracking-[0.42em] text-white/60">Non-transferable Invitation</p>
+        <p class="mt-4 text-sm text-white/34">&copy; 2026 An Enchanted Night</p>
+    </footer>
+
+    <audio id="backgroundMusic" loop preload="auto" autoplay muted playsinline>
+        <source src="background.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="musicToggle" type="button" class="music-toggle" aria-pressed="true" aria-label="Toggle background music">
+        <span class="music-toggle-dot"></span>
+        <span id="musicToggleLabel">Music On</span>
+    </button>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.14 });
+
+        document.querySelectorAll(".section-fade").forEach((section) => observer.observe(section));
+
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/xkoqldwr";
+        const rsvpForm = document.getElementById("rsvpForm");
+        const successMsg = document.getElementById("successMsg");
+        const successText = document.getElementById("successText");
+        const formStatus = document.getElementById("formStatus");
+        const rsvpSubmitButton = document.getElementById("rsvpSubmitButton");
+        const submittedAtField = document.getElementById("submittedAt");
+        const pageUrlField = document.getElementById("pageUrl");
+        let latestGuestName = "";
+        let latestAttendance = "";
+
+        function showFormStatus(message, type) {
+            formStatus.textContent = message;
+            formStatus.className = `form-status ${type}`;
+            formStatus.classList.remove("hidden");
+        }
+
+        function hideFormStatus() {
+            formStatus.classList.add("hidden");
+            formStatus.textContent = "";
+        }
+
+        function finishRsvpSubmission() {
+            successText.textContent = latestAttendance === "Declined"
+                ? `Thank you, ${latestGuestName || "guest"}. Your response has been noted with love.`
+                : `Thank you, ${latestGuestName || "guest"}. We look forward to seeing you at Rhyne's enchanted celebration.`;
+
+            rsvpForm.classList.add("hidden");
+            successMsg.classList.remove("hidden");
+            rsvpSubmitButton.disabled = false;
+            rsvpSubmitButton.textContent = "Send Response";
+            hideFormStatus();
+        }
+
+        rsvpForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.includes("PASTE_YOUR_FORM_ID")) {
+                showFormStatus("Add your Formspree endpoint in the `FORMSPREE_ENDPOINT` constant before using the RSVP form.", "error");
+                return;
+            }
+
+            if (!rsvpForm.reportValidity()) {
+                return;
+            }
+
+            const formData = new FormData(rsvpForm);
+            latestGuestName = (formData.get("guestName") || "").toString().trim();
+            latestAttendance = (formData.get("attendance") || "").toString();
+
+            submittedAtField.value = new Date().toISOString();
+            pageUrlField.value = window.location.href;
+
+            rsvpSubmitButton.disabled = true;
+            rsvpSubmitButton.textContent = "Sending...";
+            showFormStatus("Sending your RSVP...", "info");
+
+            fetch(FORMSPREE_ENDPOINT, {
+                method: "POST",
+                body: new FormData(rsvpForm),
+                headers: {
+                    "Accept": "application/json"
+                }
+            })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        throw new Error("Formspree rejected the submission.");
+                    }
+
+                    const payload = await response.json().catch(() => ({}));
+                    if (payload && payload.errors && payload.errors.length) {
+                        throw new Error(payload.errors[0].message || "Submission failed.");
+                    }
+
+                    finishRsvpSubmission();
+                })
+                .catch((error) => {
+                    rsvpSubmitButton.disabled = false;
+                    rsvpSubmitButton.textContent = "Send Response";
+                    showFormStatus(error.message || "Could not send the RSVP. Please try again.", "error");
+                });
+        });
+
+        const carousel = document.getElementById("landscapeCarousel");
+        const slides = Array.from(carousel.querySelectorAll(".carousel-slide"));
+        const track = carousel.querySelector(".carousel-track");
+        const prevButton = document.getElementById("carouselPrev");
+        const nextButton = document.getElementById("carouselNext");
+        const dotsRoot = document.getElementById("carouselDots");
+        let activeIndex = 0;
+        let autoplayId;
+
+        function shuffleSlides(items) {
+            const copy = [...items];
+            for (let index = copy.length - 1; index > 0; index -= 1) {
+                const swapIndex = Math.floor(Math.random() * (index + 1));
+                [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
+            }
+            return copy;
+        }
+
+        const randomizedSlides = shuffleSlides(slides);
+        track.innerHTML = "";
+        randomizedSlides.forEach((slide, index) => {
+            slide.classList.toggle("active", index === 0);
+            track.appendChild(slide);
+        });
+
+        const orderedSlides = Array.from(track.querySelectorAll(".carousel-slide"));
+
+        orderedSlides.forEach((_, index) => {
+            const dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = `carousel-dot${index === 0 ? " active" : ""}`;
+            dot.setAttribute("aria-label", `Go to slide ${index + 1}`);
+            dot.addEventListener("click", () => {
+                setSlide(index);
+                restartAutoplay();
+            });
+            dotsRoot.appendChild(dot);
+        });
+
+        const dots = Array.from(dotsRoot.querySelectorAll(".carousel-dot"));
+
+        function setSlide(index) {
+            activeIndex = (index + orderedSlides.length) % orderedSlides.length;
+
+            orderedSlides.forEach((slide, slideIndex) => {
+                slide.classList.toggle("active", slideIndex === activeIndex);
+            });
+
+            dots.forEach((dot, dotIndex) => {
+                dot.classList.toggle("active", dotIndex === activeIndex);
+            });
+        }
+
+        function restartAutoplay() {
+            clearInterval(autoplayId);
+            autoplayId = setInterval(() => {
+                setSlide(activeIndex + 1);
+            }, 3500);
+        }
+
+        prevButton.addEventListener("click", () => {
+            setSlide(activeIndex - 1);
+            restartAutoplay();
+        });
+
+        nextButton.addEventListener("click", () => {
+            setSlide(activeIndex + 1);
+            restartAutoplay();
+        });
+
+        carousel.addEventListener("mouseenter", () => clearInterval(autoplayId));
+        carousel.addEventListener("mouseleave", restartAutoplay);
+
+        restartAutoplay();
+
+        const backgroundMusic = document.getElementById("backgroundMusic");
+        const musicToggle = document.getElementById("musicToggle");
+        const musicToggleLabel = document.getElementById("musicToggleLabel");
+
+        function setMusicState(isPlaying) {
+            musicToggle.classList.toggle("is-muted", !isPlaying);
+            musicToggle.setAttribute("aria-pressed", String(isPlaying));
+            musicToggleLabel.textContent = isPlaying
+                ? (backgroundMusic.muted ? "Music On (Muted)" : "Music On")
+                : "Music Off";
+        }
+
+        async function playMusic() {
+            try {
+                await backgroundMusic.play();
+                setMusicState(true);
+            } catch {
+                setMusicState(false);
+            }
+        }
+
+        function pauseMusic() {
+            backgroundMusic.pause();
+            setMusicState(false);
+        }
+
+        musicToggle.addEventListener("click", async () => {
+            if (backgroundMusic.paused) {
+                backgroundMusic.muted = false;
+                await playMusic();
+                return;
+            }
+
+            if (backgroundMusic.muted) {
+                backgroundMusic.muted = false;
+                setMusicState(true);
+                return;
+            }
+
+            pauseMusic();
+        });
+
+        async function activateMusicFromInteraction() {
+            backgroundMusic.muted = false;
+            await playMusic();
+        }
+
+        document.addEventListener("click", activateMusicFromInteraction, { once: true });
+        window.addEventListener("scroll", activateMusicFromInteraction, { once: true, passive: true });
+
+        window.addEventListener("load", async () => {
+            await playMusic();
+        });
+
+        setMusicState(true);
+    </script>
+</body>
+</html>
