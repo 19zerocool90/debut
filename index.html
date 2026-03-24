@@ -707,9 +707,9 @@
             .detail-backdrop { background-attachment: scroll; }
             .music-toggle {
                 display: inline-flex;
-                top: calc(max(0.75rem, env(safe-area-inset-top)) + 0.1rem);
+                top: auto;
                 right: calc(max(0.75rem, env(safe-area-inset-right)) + 0.1rem);
-                bottom: auto;
+                bottom: calc(max(0.75rem, env(safe-area-inset-bottom)) + 0.1rem);
                 width: auto;
                 height: auto;
                 min-height: 2.9rem;
@@ -727,7 +727,7 @@
 </head>
 <body>
     <section class="hero relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-        <img src="photos/JFC6442.JPEG" alt="Rhyne portrait" class="absolute inset-0 h-full w-full object-cover">
+        <img src="photos/JFC6442.JPEG" alt="Rhyne portrait" class="absolute inset-0 h-full w-full object-cover" loading="eager" fetchpriority="high" decoding="async">
 
         <div class="floating-orb h-4 w-4 top-[18%] left-[14%]" style="animation-delay: 0s;"></div>
         <div class="floating-orb h-6 w-6 top-[30%] right-[16%]" style="animation-delay: 1.4s;"></div>
@@ -784,19 +784,19 @@
                 </div>
                 <div class="gallery-grid md:grid-cols-4 auto-rows-[220px]">
                     <div class="gallery-card md:col-span-2 md:row-span-2">
-                        <img src="photos/Scene-1-1.JPEG" alt="Rhyne in the woods">
+                        <img src="photos/Scene-1-1.JPEG" alt="Rhyne in the woods" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="caption">
                             <p class="font-display text-2xl italic">The Awakening</p>
                         </div>
                     </div>
                     <div class="gallery-card">
-                        <img src="photos/Scene-1-2.JPEG" alt="Rhyne portrait scene one">
+                        <img src="photos/Scene-1-2.JPEG" alt="Rhyne portrait scene one" loading="lazy" decoding="async" fetchpriority="low">
                     </div>
                     <div class="gallery-card">
-                        <img src="photos/Scene-1-3.JPEG" alt="Rhyne portrait scene one alternate">
+                        <img src="photos/Scene-1-3.JPEG" alt="Rhyne portrait scene one alternate" loading="lazy" decoding="async" fetchpriority="low">
                     </div>
                     <div class="gallery-card md:col-span-2">
-                        <img src="photos/Scene-1-4.JPEG" alt="Rhyne portrait closeup">
+                        <img src="photos/Scene-1-4.JPEG" alt="Rhyne portrait closeup" loading="lazy" decoding="async" fetchpriority="low">
                     </div>
                 </div>
             </div>
@@ -809,13 +809,13 @@
                 </div>
                 <div class="gallery-grid md:grid-cols-3 auto-rows-[320px]">
                     <div class="gallery-card">
-                        <img src="photos/Scene-2-1.JPEG" alt="Rhyne scene two portrait one">
+                        <img src="photos/Scene-2-1.JPEG" alt="Rhyne scene two portrait one" loading="lazy" decoding="async" fetchpriority="low">
                     </div>
                     <div class="gallery-card">
-                        <img src="photos/Scene-2-3.JPEG" alt="Rhyne scene two portrait two">
+                        <img src="photos/Scene-2-3.JPEG" alt="Rhyne scene two portrait two" loading="lazy" decoding="async" fetchpriority="low">
                     </div>
                     <div class="gallery-card">
-                        <img src="photos/Scene-2-2.JPEG" alt="Rhyne scene two portrait three">
+                        <img src="photos/Scene-2-2.JPEG" alt="Rhyne scene two portrait three" loading="lazy" decoding="async" fetchpriority="low">
                     </div>
                 </div>
             </div>
@@ -828,13 +828,13 @@
                 </div>
                 <div class="gallery-grid md:grid-cols-4 auto-rows-[454px] items-stretch">
                     <div class="gallery-card">
-                        <img src="photos/Scene-3-1.JPEG" alt="Rhyne scene three portrait one" style="height: 100%;">
+                        <img src="photos/Scene-3-1.JPEG" alt="Rhyne scene three portrait one" style="height: 100%;" loading="lazy" decoding="async" fetchpriority="low">
                     </div>
                     <div class="gallery-card md:col-span-2" style="background:#2c1b4b;">
-                        <img src="photos/Scene-3-2.JPEG" alt="Rhyne scene three portrait two" style="height: 100%; object-fit: cover; background:#2c1b4b;">
+                        <img src="photos/Scene-3-2.JPEG" alt="Rhyne scene three portrait two" style="height: 100%; object-fit: cover; background:#2c1b4b;" loading="lazy" decoding="async" fetchpriority="low">
                     </div>
                     <div class="gallery-card">
-                        <img src="photos/Scene-3-3.JPEG" alt="Rhyne scene three portrait three" style="height: 100%;">
+                        <img src="photos/Scene-3-3.JPEG" alt="Rhyne scene three portrait three" style="height: 100%;" loading="lazy" decoding="async" fetchpriority="low">
                     </div>
                 </div>
             </div>
@@ -850,35 +850,35 @@
                 <div class="video-card" id="landscapeCarousel">
                     <div class="carousel-media">
                         <div class="carousel-track">
-                            <figure class="carousel-slide active"><img src="photos/JFC5432.JPEG" alt="Rhyne landscape carousel image 1"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5442.JPEG" alt="Rhyne landscape carousel image 2"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5527.JPEG" alt="Rhyne landscape carousel image 3"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5636.JPEG" alt="Rhyne landscape carousel image 4"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5699.JPEG" alt="Rhyne landscape carousel image 5"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5781.JPEG" alt="Rhyne landscape carousel image 6"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5830.JPEG" alt="Rhyne landscape carousel image 7"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5863.JPEG" alt="Rhyne landscape carousel image 8"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5869.JPEG" alt="Rhyne landscape carousel image 9"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5874.JPEG" alt="Rhyne landscape carousel image 10"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5883.JPEG" alt="Rhyne landscape carousel image 11"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5909.JPEG" alt="Rhyne landscape carousel image 12"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5915.JPEG" alt="Rhyne landscape carousel image 13"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC6113.JPEG" alt="Rhyne landscape carousel image 14"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC6185.JPEG" alt="Rhyne landscape carousel image 15"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC6240.JPEG" alt="Rhyne landscape carousel image 16"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC6280.JPEG" alt="Rhyne landscape carousel image 17"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC6333.JPEG" alt="Rhyne landscape carousel image 18"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC6435.JPEG" alt="Rhyne landscape carousel image 19"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-1-1.JPEG" alt="Rhyne landscape carousel image 20"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-1-2.JPEG" alt="Rhyne landscape carousel image 21"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-1-3.JPEG" alt="Rhyne landscape carousel image 22"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-1-4.JPEG" alt="Rhyne landscape carousel image 23"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-2-1.JPEG" alt="Rhyne landscape carousel image 24"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-2-3.JPEG" alt="Rhyne landscape carousel image 25"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-2-2.JPEG" alt="Rhyne landscape carousel image 26"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-3-1.JPEG" alt="Rhyne landscape carousel image 27"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-3-2.JPEG" alt="Rhyne landscape carousel image 28"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-3-3.JPEG" alt="Rhyne landscape carousel image 29"></figure>
+                            <figure class="carousel-slide active"><img src="photos/JFC5432.JPEG" alt="Rhyne landscape carousel image 1" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC5442.JPEG" alt="Rhyne landscape carousel image 2" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC5527.JPEG" alt="Rhyne landscape carousel image 3" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC5636.JPEG" alt="Rhyne landscape carousel image 4" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC5699.JPEG" alt="Rhyne landscape carousel image 5" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC5781.JPEG" alt="Rhyne landscape carousel image 6" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC5830.JPEG" alt="Rhyne landscape carousel image 7" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC5863.JPEG" alt="Rhyne landscape carousel image 8" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC5869.JPEG" alt="Rhyne landscape carousel image 9" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC5874.JPEG" alt="Rhyne landscape carousel image 10" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC5883.JPEG" alt="Rhyne landscape carousel image 11" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC5909.JPEG" alt="Rhyne landscape carousel image 12" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC5915.JPEG" alt="Rhyne landscape carousel image 13" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC6113.JPEG" alt="Rhyne landscape carousel image 14" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC6185.JPEG" alt="Rhyne landscape carousel image 15" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC6240.JPEG" alt="Rhyne landscape carousel image 16" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC6280.JPEG" alt="Rhyne landscape carousel image 17" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC6333.JPEG" alt="Rhyne landscape carousel image 18" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/JFC6435.JPEG" alt="Rhyne landscape carousel image 19" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/Scene-1-1.JPEG" alt="Rhyne landscape carousel image 20" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/Scene-1-2.JPEG" alt="Rhyne landscape carousel image 21" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/Scene-1-3.JPEG" alt="Rhyne landscape carousel image 22" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/Scene-1-4.JPEG" alt="Rhyne landscape carousel image 23" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/Scene-2-1.JPEG" alt="Rhyne landscape carousel image 24" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/Scene-2-3.JPEG" alt="Rhyne landscape carousel image 25" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/Scene-2-2.JPEG" alt="Rhyne landscape carousel image 26" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/Scene-3-1.JPEG" alt="Rhyne landscape carousel image 27" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/Scene-3-2.JPEG" alt="Rhyne landscape carousel image 28" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                            <figure class="carousel-slide"><img src="photos/Scene-3-3.JPEG" alt="Rhyne landscape carousel image 29" loading="lazy" decoding="async" fetchpriority="low"></figure>
                         </div>
 
                         <div class="carousel-ui">
