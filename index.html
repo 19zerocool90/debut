@@ -413,35 +413,41 @@
         }
 
         .video-card {
-            position: relative;
-            width: 100%;
-            border-radius: 1.75rem;
-            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            width: fit-content;
+            max-width: 100%;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.94);
-            box-shadow: var(--shadow);
         }
 
         .carousel-media {
-            position: relative;
-            height: clamp(24rem, 62vw, 40rem);
-            overflow: hidden;
-            border-radius: 1.75rem;
-        }
-
-        .carousel-media::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(44, 27, 75, 0.12), rgba(44, 27, 75, 0.74));
-            z-index: 1;
-            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            width: fit-content;
+            max-width: 100%;
+            margin: 0 auto;
         }
 
         .video-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .video-embed-shell {
+            display: flex;
+            justify-content: center;
+            width: fit-content;
+            max-width: 100%;
+        }
+
+        .video-embed-shell video {
+            width: min(100%, 960px);
+            height: auto;
+            max-height: 80svh;
+            display: block;
+            border-radius: 1.25rem;
+            background: #120f1d;
         }
 
         .carousel-track {
@@ -541,58 +547,14 @@
 
         @media (max-width: 767px) {
             .video-card {
-                width: min(100%, 100%);
-                border-radius: 1.75rem;
+                width: 100%;
             }
-            .carousel-media {
-                height: clamp(20rem, 86vw, 26rem);
+            .video-embed-shell {
+                width: 100%;
             }
-            .carousel-media::before {
-                background:
-                    linear-gradient(180deg, rgba(44, 27, 75, 0.08) 0%, rgba(44, 27, 75, 0.18) 32%, rgba(44, 27, 75, 0.88) 100%);
-            }
-            .carousel-ui {
-                align-items: center;
-                padding: 0 1rem;
-            }
-            .carousel-button {
-                width: 2.6rem;
-                height: 2.6rem;
-                background: rgba(255, 255, 255, 0.1);
-                border-color: rgba(255, 255, 255, 0.32);
-                font-size: 0.95rem;
-            }
-            .carousel-copy {
-                inset: auto 2.4rem 2rem;
-            }
-            .carousel-copy p:first-child {
-                font-size: 0.7rem;
-            }
-            .carousel-copy p:last-child {
-                max-width: 17.5rem;
-                font-size: 0.82rem;
-                line-height: 1.35;
-            }
-            .carousel-dots {
-                inset: auto 0 0.9rem;
-                gap: 0.4rem;
-                padding: 0 1rem;
-                overflow-x: auto;
-                scrollbar-width: none;
-            }
-            .carousel-dots::-webkit-scrollbar {
-                display: none;
-            }
-            .carousel-dot {
-                width: 0.42rem;
-                height: 0.42rem;
-                border-radius: 999px;
-                background: rgba(255, 255, 255, 0.28);
-                flex: 0 0 auto;
-            }
-            .carousel-dot.active {
-                background: rgba(255, 155, 210, 0.95);
-                transform: scale(1);
+            .video-embed-shell video {
+                width: 100%;
+                max-height: none;
             }
             .carousel-heading {
                 margin-bottom: 1.45rem;
@@ -700,9 +662,9 @@
             .hero { min-height: 100svh; }
             .hero-title { font-size: clamp(3.5rem, 18vw, 5.2rem); }
             .hero > img {
-                transform: scale(2.5);
+                transform: scale(1);
                 transform-origin: center center;
-                object-position: center -16%;
+                object-position: center top;
             }
             .detail-backdrop { background-attachment: scroll; }
             .music-toggle {
@@ -727,7 +689,7 @@
 </head>
 <body>
     <section class="hero relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-        <img src="photos/JFC6442.JPEG" alt="Rhyne portrait" class="absolute inset-0 h-full w-full object-cover" loading="eager" fetchpriority="high" decoding="async">
+        <img src="photos/Scene-3-2.JPEG" alt="Rhyne portrait" class="absolute inset-0 h-full w-full object-cover" loading="eager" fetchpriority="high" decoding="async">
 
         <div class="floating-orb h-4 w-4 top-[18%] left-[14%]" style="animation-delay: 0s;"></div>
         <div class="floating-orb h-6 w-6 top-[30%] right-[16%]" style="animation-delay: 1.4s;"></div>
@@ -841,59 +803,20 @@
 
             <div class="mt-20 mx-auto section-fade">
                 <div class="carousel-heading">
-                    <p class="carousel-heading-kicker">Moonlit Frames</p>
-                    <h3 class="carousel-heading-title">Moonlit Portrait Carousel</h3>
+                    <p class="carousel-heading-kicker">Moonlit Reel</p>
+                    <h3 class="carousel-heading-title">Moonlit Portrait Video</h3>
                     <p class="carousel-heading-description">
-                        A dreamy collection of Rhyne's portraits, drifting from soft garden light into a more cinematic midnight glow.
+                        A featured video from Rhyne's portrait session, now playing directly from the local file.
                     </p>
                 </div>
-                <div class="video-card" id="landscapeCarousel">
+                <div class="video-card">
                     <div class="carousel-media">
-                        <div class="carousel-track">
-                            <figure class="carousel-slide active"><img src="photos/JFC5432.JPEG" alt="Rhyne landscape carousel image 1" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5442.JPEG" alt="Rhyne landscape carousel image 2" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5527.JPEG" alt="Rhyne landscape carousel image 3" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5636.JPEG" alt="Rhyne landscape carousel image 4" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5699.JPEG" alt="Rhyne landscape carousel image 5" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5781.JPEG" alt="Rhyne landscape carousel image 6" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5830.JPEG" alt="Rhyne landscape carousel image 7" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5863.JPEG" alt="Rhyne landscape carousel image 8" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5869.JPEG" alt="Rhyne landscape carousel image 9" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5874.JPEG" alt="Rhyne landscape carousel image 10" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5883.JPEG" alt="Rhyne landscape carousel image 11" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5909.JPEG" alt="Rhyne landscape carousel image 12" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC5915.JPEG" alt="Rhyne landscape carousel image 13" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC6113.JPEG" alt="Rhyne landscape carousel image 14" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC6185.JPEG" alt="Rhyne landscape carousel image 15" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC6240.JPEG" alt="Rhyne landscape carousel image 16" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC6280.JPEG" alt="Rhyne landscape carousel image 17" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC6333.JPEG" alt="Rhyne landscape carousel image 18" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/JFC6435.JPEG" alt="Rhyne landscape carousel image 19" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-1-1.JPEG" alt="Rhyne landscape carousel image 20" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-1-2.JPEG" alt="Rhyne landscape carousel image 21" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-1-3.JPEG" alt="Rhyne landscape carousel image 22" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-1-4.JPEG" alt="Rhyne landscape carousel image 23" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-2-1.JPEG" alt="Rhyne landscape carousel image 24" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-2-3.JPEG" alt="Rhyne landscape carousel image 25" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-2-2.JPEG" alt="Rhyne landscape carousel image 26" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-3-1.JPEG" alt="Rhyne landscape carousel image 27" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-3-2.JPEG" alt="Rhyne landscape carousel image 28" loading="lazy" decoding="async" fetchpriority="low"></figure>
-                            <figure class="carousel-slide"><img src="photos/Scene-3-3.JPEG" alt="Rhyne landscape carousel image 29" loading="lazy" decoding="async" fetchpriority="low"></figure>
+                        <div class="video-embed-shell">
+                            <video id="portraitVideo" controls preload="metadata" playsinline>
+                                <source src="video.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
-
-                        <div class="carousel-ui">
-                            <button type="button" class="carousel-button" id="carouselPrev" aria-label="Previous image">&#10094;</button>
-                            <button type="button" class="carousel-button" id="carouselNext" aria-label="Next image">&#10095;</button>
-                        </div>
-
-                        <div class="carousel-copy">
-                            <p class="uppercase tracking-[0.34em] text-xs text-fuchsia-50">Enchanted Photo Reel</p>
-                            <p class="mt-3 max-w-2xl mx-auto text-sm md:text-base text-white/84">
-                                A carousel of Rhyne's landscape portraits, moving through each chapter of the pictorial.
-                            </p>
-                        </div>
-
-                        <div class="carousel-dots" id="carouselDots"></div>
                     </div>
                 </div>
             </div>
@@ -1329,84 +1252,22 @@
                 });
         });
 
-        const carousel = document.getElementById("landscapeCarousel");
-        const slides = Array.from(carousel.querySelectorAll(".carousel-slide"));
-        const track = carousel.querySelector(".carousel-track");
-        const prevButton = document.getElementById("carouselPrev");
-        const nextButton = document.getElementById("carouselNext");
-        const dotsRoot = document.getElementById("carouselDots");
-        let activeIndex = 0;
-        let autoplayId;
-
-        function shuffleSlides(items) {
-            const copy = [...items];
-            for (let index = copy.length - 1; index > 0; index -= 1) {
-                const swapIndex = Math.floor(Math.random() * (index + 1));
-                [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
-            }
-            return copy;
-        }
-
-        const randomizedSlides = shuffleSlides(slides);
-        track.innerHTML = "";
-        randomizedSlides.forEach((slide, index) => {
-            slide.classList.toggle("active", index === 0);
-            track.appendChild(slide);
-        });
-
-        const orderedSlides = Array.from(track.querySelectorAll(".carousel-slide"));
-
-        orderedSlides.forEach((_, index) => {
-            const dot = document.createElement("button");
-            dot.type = "button";
-            dot.className = `carousel-dot${index === 0 ? " active" : ""}`;
-            dot.setAttribute("aria-label", `Go to slide ${index + 1}`);
-            dot.addEventListener("click", () => {
-                setSlide(index);
-                restartAutoplay();
-            });
-            dotsRoot.appendChild(dot);
-        });
-
-        const dots = Array.from(dotsRoot.querySelectorAll(".carousel-dot"));
-
-        function setSlide(index) {
-            activeIndex = (index + orderedSlides.length) % orderedSlides.length;
-
-            orderedSlides.forEach((slide, slideIndex) => {
-                slide.classList.toggle("active", slideIndex === activeIndex);
-            });
-
-            dots.forEach((dot, dotIndex) => {
-                dot.classList.toggle("active", dotIndex === activeIndex);
-            });
-        }
-
-        function restartAutoplay() {
-            clearInterval(autoplayId);
-            autoplayId = setInterval(() => {
-                setSlide(activeIndex + 1);
-            }, 3500);
-        }
-
-        prevButton.addEventListener("click", () => {
-            setSlide(activeIndex - 1);
-            restartAutoplay();
-        });
-
-        nextButton.addEventListener("click", () => {
-            setSlide(activeIndex + 1);
-            restartAutoplay();
-        });
-
-        carousel.addEventListener("mouseenter", () => clearInterval(autoplayId));
-        carousel.addEventListener("mouseleave", restartAutoplay);
-
-        restartAutoplay();
-
         const backgroundMusic = document.getElementById("backgroundMusic");
         const musicToggle = document.getElementById("musicToggle");
         const musicToggleLabel = document.getElementById("musicToggleLabel");
+        const portraitVideo = document.getElementById("portraitVideo");
+
+        function isBackgroundMusicPlaying() {
+            return !backgroundMusic.paused && !backgroundMusic.muted;
+        }
+
+        function syncVideoAudioWithMusic() {
+            if (!portraitVideo) {
+                return;
+            }
+
+            portraitVideo.muted = isBackgroundMusicPlaying();
+        }
 
         function setMusicState(isPlaying) {
             musicToggle.classList.toggle("is-muted", !isPlaying);
@@ -1420,14 +1281,17 @@
             try {
                 await backgroundMusic.play();
                 setMusicState(true);
+                syncVideoAudioWithMusic();
             } catch {
                 setMusicState(false);
+                syncVideoAudioWithMusic();
             }
         }
 
         function pauseMusic() {
             backgroundMusic.pause();
             setMusicState(false);
+            syncVideoAudioWithMusic();
         }
 
         musicToggle.addEventListener("click", async () => {
@@ -1440,6 +1304,7 @@
             if (backgroundMusic.muted) {
                 backgroundMusic.muted = false;
                 setMusicState(true);
+                syncVideoAudioWithMusic();
                 return;
             }
 
@@ -1447,8 +1312,32 @@
         });
 
         async function activateMusicFromInteraction() {
+            if (portraitVideo && !portraitVideo.paused && !portraitVideo.ended) {
+                syncVideoAudioWithMusic();
+                return;
+            }
+
             backgroundMusic.muted = false;
             await playMusic();
+        }
+
+        if (portraitVideo) {
+            portraitVideo.addEventListener("play", () => {
+                if (!backgroundMusic.paused) {
+                    pauseMusic();
+                } else {
+                    syncVideoAudioWithMusic();
+                }
+            });
+
+            portraitVideo.addEventListener("volumechange", () => {
+                if (!portraitVideo.muted && !backgroundMusic.paused) {
+                    pauseMusic();
+                }
+            });
+
+            portraitVideo.addEventListener("pause", syncVideoAudioWithMusic);
+            portraitVideo.addEventListener("ended", syncVideoAudioWithMusic);
         }
 
         document.addEventListener("click", activateMusicFromInteraction, { once: true });
@@ -1459,6 +1348,7 @@
         });
 
         setMusicState(true);
+        syncVideoAudioWithMusic();
     </script>
 </body>
 </html>
