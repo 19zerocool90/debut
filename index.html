@@ -1169,14 +1169,17 @@
 
         document.querySelectorAll(".section-fade").forEach((section) => observer.observe(section));
 
-        const FORMSPREE_ENDPOINT = "https://formspree.io/f/xkoqldwr";
+        const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSdImyfSZJcuL4MyCVucaBYpL_Js3epNV7SNiTr4qxj7LoykJA/formResponse";
+        const GOOGLE_FORM_FIELDS = {
+            guestName: "entry.406735557",
+            attendance: "entry.1098758078",
+            guestMessage: "entry.1278809227"
+        };
         const rsvpForm = document.getElementById("rsvpForm");
         const successMsg = document.getElementById("successMsg");
         const successText = document.getElementById("successText");
         const formStatus = document.getElementById("formStatus");
         const rsvpSubmitButton = document.getElementById("rsvpSubmitButton");
-        const submittedAtField = document.getElementById("submittedAt");
-        const pageUrlField = document.getElementById("pageUrl");
         let latestGuestName = "";
         let latestAttendance = "";
 
@@ -1206,8 +1209,8 @@
         rsvpForm.addEventListener("submit", (event) => {
             event.preventDefault();
 
-            if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.includes("PASTE_YOUR_FORM_ID")) {
-                showFormStatus("Add your Formspree endpoint in the `FORMSPREE_ENDPOINT` constant before using the RSVP form.", "error");
+            if (!GOOGLE_FORM_ACTION.includes("/formResponse")) {
+                showFormStatus("Add a valid Google Form `formResponse` URL before using the RSVP form.", "error");
                 return;
             }
 
@@ -1218,37 +1221,32 @@
             const formData = new FormData(rsvpForm);
             latestGuestName = (formData.get("guestName") || "").toString().trim();
             latestAttendance = (formData.get("attendance") || "").toString();
-
-            submittedAtField.value = new Date().toISOString();
-            pageUrlField.value = window.location.href;
+            const guestMessage = (formData.get("guestMessage") || "").toString().trim();
 
             rsvpSubmitButton.disabled = true;
             rsvpSubmitButton.textContent = "Sending...";
             showFormStatus("Sending your RSVP...", "info");
 
-            fetch(FORMSPREE_ENDPOINT, {
+            const googlePayload = new URLSearchParams();
+            googlePayload.set(GOOGLE_FORM_FIELDS.guestName, latestGuestName);
+            googlePayload.set(GOOGLE_FORM_FIELDS.attendance, latestAttendance);
+            googlePayload.set(GOOGLE_FORM_FIELDS.guestMessage, guestMessage);
+
+            fetch(GOOGLE_FORM_ACTION, {
                 method: "POST",
-                body: new FormData(rsvpForm),
+                mode: "no-cors",
                 headers: {
-                    "Accept": "application/json"
-                }
+                    "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+                },
+                body: googlePayload.toString()
             })
-                .then(async (response) => {
-                    if (!response.ok) {
-                        throw new Error("Formspree rejected the submission.");
-                    }
-
-                    const payload = await response.json().catch(() => ({}));
-                    if (payload && payload.errors && payload.errors.length) {
-                        throw new Error(payload.errors[0].message || "Submission failed.");
-                    }
-
+                .then(() => {
                     finishRsvpSubmission();
                 })
                 .catch((error) => {
                     rsvpSubmitButton.disabled = false;
                     rsvpSubmitButton.textContent = "Send Response";
-                    showFormStatus(error.message || "Could not send the RSVP. Please try again.", "error");
+                    showFormStatus(error.message || "Could not send the RSVP to Google Forms. Please try again.", "error");
                 });
         });
 
